@@ -18,3 +18,11 @@ $('#plant').bootstrapTable({
     }
    ]
 });
+
+
+
+ajaxRequest = function(){
+	$.ajax({ url: "/user/info", dataType:"json",success: function(data){
+	    alert(data);
+	}});
+}
