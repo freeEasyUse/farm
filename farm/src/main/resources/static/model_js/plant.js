@@ -20,9 +20,28 @@ $('#plant').bootstrapTable({
 });
 
 
+$.ajaxSetup( {
+	//设置ajax请求结束后的执行动作
+	complete : 
+		function(XMLHttpRequest, textStatus) {
+			if(XMLHttpRequest.responseText.length>100){
+				alert("gogog");
+			}
+		}
+	});
+
+
 
 ajaxRequest = function(){
-	$.ajax({ url: "/user/info", dataType:"json",success: function(data){
-	    alert(data);
-	}});
+	$.ajax({
+		   type: "GET",
+		   url: "/user/info",
+		   dataType:"json",
+		   success: function(msg){
+		     alert( "Data Saved: " + msg );
+		   },
+		   statusCode:{302:function(){
+			   alert('go');
+		   }}
+	});
 }
